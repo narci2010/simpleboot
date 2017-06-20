@@ -1,11 +1,12 @@
+var contextPath="";
 requirejs.config({
     // baseUrl: 'js/lib',
     paths: {
         jquery:'lib/jquery.min',
         easyui:'lib/jquery.easyui.min',
-        easyuimobile:'lib/jquery.easyui.mobile',
         easyuilangzhCN:'lib/easyui-lang-zh_CN',
         main:'main',
+        mainnotsafe:'main-notsafe',
         jwt:'jwt/jwt-token',
         sjcl:'jwt-lib/sjcl/sjcl',
         timeutil:'lib/timeutil'
@@ -18,6 +19,10 @@ requirejs.config({
   	　　　　　　exports: 'main',
   	      		deps: ['jquery']
   	　　　　},
+  	     'mainnotsafe':{
+ 	　　　　　　exports: 'mainnotsafe',
+ 	      		deps: ['jquery']
+ 	　　　　},
     	'easyui':{
     	　　　　　　exports: 'easyui',
     	      	   deps: ['jquery']
@@ -25,10 +30,6 @@ requirejs.config({
     	'easyuilangzhCN':{
   	　　　　　　exports: 'easyui',
 	      	   deps: ['jquery','easyui']
-  	　　　　},
-    	'easyuimobile':{
-  	　　　　　　exports: 'easyuimobile',
-  	      	   deps: ['jquery','easyui']
   	　　　　},
 		'datagridscrollview':{
 		　　　　exports: 'datagridscrollview',
@@ -45,17 +46,5 @@ requirejs.config({
 		 }
 　　}
 });
-
-
-var contextPath = (function(){
-	var location = (window.location+'').split('/');
-	var basePath = location[0]+'//'+location[2];
-	if(location[3]=="html"){
-		return basePath;
-	}else{
-		return basePath+'/'+location[3];
-	}
-})();
-
 
 

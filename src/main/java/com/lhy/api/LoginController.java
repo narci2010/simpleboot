@@ -6,6 +6,7 @@ import org.apache.shiro.SecurityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,6 +30,7 @@ public class LoginController{
 	
 	protected static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 	
+	@Transactional
 	@RequestMapping(value = "",method = RequestMethod.POST)
 	public StatelessToken login(String userCode, String password) {
 		logger.info("userCode:"+userCode);

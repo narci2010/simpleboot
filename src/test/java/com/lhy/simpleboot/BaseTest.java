@@ -10,12 +10,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.cache.CacheManager;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.lhy.Application;
 import com.lhy.api.UserService;
+import com.lhy.common.mapper.TestSelectMapper;
 import com.lhy.common.mapper.WxCounterMapper;
 import com.lhy.common.mapper.WxUserMapper;
 import com.lhy.common.model.WxCounter;
 import com.lhy.common.model.WxUser;
-import com.lhy.main.Application;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -33,6 +34,9 @@ public class BaseTest {
 	
 	@Autowired
 	private CacheManager cacheManager;
+	
+	@Autowired
+	private TestSelectMapper testSelectMapper;
 	
 	@Test
 	public void testWxCounter(){
@@ -55,6 +59,12 @@ public class BaseTest {
 //		WxUser userByUserCode1 = userService.getUserByUserCode("admin");
 		cacheManager.getCache("wxUser");
 		System.out.println(cacheManager.getClass());
+	}
+	
+	@Test
+	public void testSelectMapper(){
+		WxUser selectWxUser = testSelectMapper.selectWxUser(10);
+		Assert.assertNotNull(selectWxUser);
 	}
 	
 }
